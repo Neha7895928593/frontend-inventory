@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import TopNav from '../components/TopNav';
@@ -13,33 +13,16 @@ const ChangePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [dealerId, setDealerId] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch dealer information on component mount
-  useEffect(() => {
-    const fetchDealer = async () => {
-      try {
-        const response = await axios.get('https://inventorysystem-a14x.onrender.com/api/var/superAdmin/dealers', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('dealerToken')}`
-          }
-        });
-        // Assuming the API returns an array and we're interested in the first dealer
-        const dealer = response.data[0]; 
-        setDealerId(dealer._id);
-      } catch (error) {
-        toast.error('Failed to fetch dealer information.');
-        console.error(error);
-      }
-    };
-
-    fetchDealer();
-  }, []);
+  // Get dealer ID from local storage
+  const dealerData = JSON.parse(localStorage.getItem('dealer'));
+  const dealerId = dealerData ? dealerData._id : null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     if (newPassword !== confirmPassword) {
       setError('New password and confirmation do not match.');
       return;
@@ -59,7 +42,7 @@ const ChangePassword = () => {
 
     const config = {
       method: 'put',
-      url: `http://localhost:5000/api/var/dealers/change-password/${dealerId}`,
+      url: `https://inventorysystem-a14x.onrender.com/api/var/dealers/change-password/${dealerId}`,
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('dealerToken')}`,
         'Content-Type': 'application/json'
