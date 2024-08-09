@@ -6,7 +6,7 @@ import BottomNav from '../components/BottomNav';  // Adjust the path as needed
 
 const settingsOptions = [
   { Icon: TagIcon, text: 'Add Brand', path: '/add-brand' },
-  { Icon: TagIcon, text: 'Add Category', path: '/add-category' },  // Fixed typo in path
+  { Icon: TagIcon, text: 'Add Category', path: '/add-categoray' },  
   { Icon: PencilIcon, text: 'View Brand', path: '/view-brand' },
   { Icon: PencilIcon, text: 'View Category', path: '/view-category' },
   { Icon: ChartBarIcon, text: 'View Performance', path: '/view-performance' },
@@ -23,7 +23,7 @@ const SettingsPage = () => {
   const handleNavigation = (path, isLogout = false) => {
     if (isLogout) {
       // Implement your log out logic here
-      localStorage.removeItem('dealerToken,dealers'); // Remove token or other session data
+      localStorage.removeItem('dealerToken,dealer'); // Remove token or other session data
       console.log("User logged out");
 
       // Redirect to login page
