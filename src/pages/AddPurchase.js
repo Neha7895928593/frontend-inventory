@@ -6,7 +6,7 @@ import TopNav from '../components/TopNav';
 import BottomNav from '../components/BottomNav';
 import { ArrowTrendingUpIcon, CurrencyDollarIcon, TagIcon, CalendarIcon } from '@heroicons/react/24/solid';
 
-const AddSales = () => {
+const AddPurchase = () => {
   const [brands, setBrands] = useState([]);
   const [models, setModels] = useState([]);
   const [brand, setBrand] = useState(''); // Store the brand name
@@ -72,16 +72,16 @@ const AddSales = () => {
         }
       });
 
-      toast.success('Sale added successfully!');
-      console.log('Sale added successfully:', response.data);
+      toast.success('Purchase added successfully!');
+      console.log('Purchase added successfully:', response.data);
 
       setBrand('');
       setQuantity('');
       setModel('');
       setDate('');
     } catch (error) {
-      toast.error('Error adding sale!');
-      console.error('Error adding sale:', error);
+      toast.error('Error adding purchase!');
+      console.error('Error adding purchase:', error);
     }
   };
 
@@ -92,7 +92,7 @@ const AddSales = () => {
       <main className="flex-1 flex justify-center items-center p-4 mt-0">
         <div className="w-full max-w-lg bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="p-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Add Sale</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">Add Purchase</h1>
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Brand Dropdown */}
               <div className="flex flex-col">
@@ -169,7 +169,7 @@ const AddSales = () => {
                 type="submit"
                 className="w-full bg-teal-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-teal-700 transition duration-300 ease-in-out"
               >
-                Add Sale
+                Add Purchase
               </button>
             </form>
           </div>
@@ -182,4 +182,4 @@ const AddSales = () => {
   );
 };
 
-export default AddSales;
+export default AddPurchase;

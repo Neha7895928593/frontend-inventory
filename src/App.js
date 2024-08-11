@@ -22,9 +22,11 @@ import EditUser from './admin/EditUser';
 import UserDetails from './admin/UserDetails';
 import AdminSettings from './admin/Settings';
 import { BrandProvider } from './pages/Brands'; // Adjust the path as needed
+import SearchPage from './pages/Search';
 
 function App() {
   return (
+    // <SearchPage/>
     <Router>
       <BrandProvider>
         <div className="App">

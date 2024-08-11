@@ -1,7 +1,18 @@
-import React from 'react';
-import { Bars3Icon, XMarkIcon, UserCircleIcon } from '@heroicons/react/24/solid'; // Import necessary icons
+import React, { useEffect, useState } from 'react';
+import { Bars3Icon, XMarkIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 
-const TopNav = ({ toggleSidebar, isSidebarOpen, username = "Alex Johnson" }) => {
+const TopNav = ({ toggleSidebar, isSidebarOpen }) => {
+  const [username, setUsername] = useState('');
+
+  // Retrieve the username from local storage when the component mounts
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('dealer');
+    if (storedUserData) {
+      const { username } = JSON.parse(storedUserData);
+      setUsername(username);
+    }
+  }, []);
+
   return (
     <div className="bg-teal-600 text-white p-4 fixed top-0 left-0 w-full shadow-lg flex items-center justify-between z-30 rounded-b-3xl">
       {/* Toggle Button */}
@@ -25,7 +36,7 @@ const TopNav = ({ toggleSidebar, isSidebarOpen, username = "Alex Johnson" }) => 
 
       {/* Welcome Username */}
       <div className="flex items-center space-x-4">
-        <span className="text-lg font-medium">Welcome, {username}</span>
+        <span className="text-lg font-medium">Welcome, {username || "Dealer"}</span>
         <UserCircleIcon className="w-8 h-8 text-teal-200 transition-transform transform hover:scale-110 duration-300 ease-in-out" />
       </div>
     </div>
